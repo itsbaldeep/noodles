@@ -1,0 +1,22 @@
+{
+  "name": "noodles",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsbaldeep/noodles.git"
+  },
+  "author": "Baldeep Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsbaldeep/noodles/issues"
+  },
+  "homepage": "https://github.com/itsbaldeep/noodles#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
