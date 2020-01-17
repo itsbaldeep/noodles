@@ -25,13 +25,13 @@ client.on('message', async message => {
         res.on('data', res => buffer += res);
         res.on('end', () => {
             const data = JSON.parse(buffer);
-            if (data.photos) {
-                const index = Math.floor(Math.random() * 40);
-                const url = data.photos[index].src.original;
-                message.channel.send(`Here's ${input} for you!`, {file: url});
-            } else {
-                message.channel.send(`Couldn't find any images relating to your search ${input}`)
-            }
+            const index = Math.floor(Math.random() * 40);
+            const photo = data.photos[index];
+
+            if (photo) 
+                message.channel.send(`Here's ${input} for you!`, {file: photo.src.original});
+            else
+                message.channel.send(`Couldn't find any images relating to your search ${input}`);
         });
         res.on('error', console.log);
     });
