@@ -13,7 +13,7 @@ client.on('message', async message => {
     if (message.content.toLowerCase().indexOf(prefix) !== 0) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
-    const input = args.join(" ").toLowerCase();
+    const input = args.join('%20').toLowerCase();
     console.log(args, input);
 
     const options = {
@@ -31,7 +31,7 @@ client.on('message', async message => {
             const photo = data.photos[index];
 
             if (photo) 
-                message.channel.send(`:man_gesturing_ok: ${input} for you! ${photo.src.original}`);
+                message.channel.send(`:man_gesturing_ok: ${args.join(' ')} for you! ${photo.src.original}`);
             else
                 message.channel.send(':man_gesturing_no: No photos found relating to your search!');
         });
