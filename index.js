@@ -27,7 +27,7 @@ client.on('message', async message => {
         res.on('end', () => {
             const data = JSON.parse(buffer);
             const index = Math.floor(Math.random() * photo_count);
-            if (data.photos[index]) {
+            if (data.photos && data.photos[index]) {
                 const url = data.photos[index].src.original;
                 message.reply(url);
             }
