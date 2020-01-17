@@ -14,6 +14,7 @@ client.on('message', async message => {
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const input = args.join(" ").toLowerCase();
+    console.log(args, input);
 
     const options = {
         host: 'api.pexels.com',
@@ -27,7 +28,6 @@ client.on('message', async message => {
             const data = JSON.parse(buffer);
             const length = Math.min(data.per_page, data.total_results);
             const index = Math.floor(Math.random() * length);
-            console.log(data.total_results, data.per_page, data.photos.length);
             const photo = data.photos[index];
 
             if (photo) 
