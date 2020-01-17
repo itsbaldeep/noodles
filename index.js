@@ -10,7 +10,7 @@ client.on('ready', () => {
 
 client.on('message', async message => {
     if (message.author.bot) return;
-    if (message.content.indexOf(prefix) !== 0) return;
+    if (message.content.toLowerCase().indexOf(prefix) !== 0) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const input = args.shift().toLowerCase();
@@ -26,10 +26,11 @@ client.on('message', async message => {
         res.on('data', res => buffer += res);
         res.on('end', () => {
             const data = JSON.parse(buffer);
-            if (data.photos.length == 0) return;
             const index = Math.floor(Math.random() * photo_count);
-            const url = data.photos[index].src.original;
-            message.reply(url);
+            if (data.photos[index]) {
+                const url = data.photos[index].src.original;
+                message.reply(url);
+            }
         })
     });
     req.end();
