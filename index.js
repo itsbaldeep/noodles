@@ -13,12 +13,11 @@ client.on('message', async message => {
     if (message.content.toLowerCase().indexOf(prefix) !== 0) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
-    const input = args.shift().toLowerCase();
+    const input = args.join(" ").toLowerCase();
 
-    const photo_count = 30;
     const options = {
         host: 'api.pexels.com',
-        path: `/v1/search?per_page=${photo_count}&query=${input}`,
+        path: `/v1/search?per_page=80&query=${input}`,
         headers: { 'Authorization': process.env.PEXELS_API }
     };
     const req = https.request(options, res => {
@@ -26,12 +25,15 @@ client.on('message', async message => {
         res.on('data', res => buffer += res);
         res.on('end', () => {
             const data = JSON.parse(buffer);
-            const index = Math.floor(Math.random() * photo_count);
-            if (data.photos && data.photos[index]) {
+            if (data.photos.total_results != 0) {
+                const index = Math.floor(Math.random() * data.photos.total_results);
                 const url = data.photos[index].src.original;
-                message.reply(url);
+                message.channel.send(`Here's ${input} for you!`, {file: url});
+            } else {
+                message.channel.send(`Couldn't find any images relating to your search ${input}`)
             }
-        })
+        });
+        res.on('error', console.log);
     });
     req.end();
 });
