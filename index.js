@@ -25,8 +25,9 @@ client.on('message', async message => {
         res.on('data', res => buffer += res);
         res.on('end', () => {
             const data = JSON.parse(buffer);
-            const index = Math.floor(Math.random() * data.per_page);
-            console.log(data);
+            const length = Math.min(data.per_page, data.total_results);
+            const index = Math.floor(Math.random() * length);
+            console.log(data.total_results, data.per_page, data.photos.length);
             const photo = data.photos[index];
 
             if (photo) 
