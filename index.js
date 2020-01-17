@@ -17,7 +17,7 @@ client.on('message', async message => {
 
     const options = {
         host: 'api.pexels.com',
-        path: `/v1/search?per_page=20&query=${input}`,
+        path: `/v1/search?per_page=80&query=${input}`,
         headers: { 'Authorization': process.env.PEXELS_API }
     };
     const req = https.request(options, res => {
@@ -25,7 +25,8 @@ client.on('message', async message => {
         res.on('data', res => buffer += res);
         res.on('end', () => {
             const data = JSON.parse(buffer);
-            const index = Math.floor(Math.random() * 20);
+            const index = Math.floor(Math.random() * data.per_page);
+            console.log(data);
             const photo = data.photos[index];
 
             if (photo) 
