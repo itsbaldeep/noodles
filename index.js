@@ -17,7 +17,7 @@ client.on('message', async message => {
 
     const options = {
         host: 'api.pexels.com',
-        path: `/v1/search?per_page=40&query=${input}`,
+        path: `/v1/search?per_page=20&query=${input}`,
         headers: { 'Authorization': process.env.PEXELS_API }
     };
     const req = https.request(options, res => {
@@ -25,13 +25,13 @@ client.on('message', async message => {
         res.on('data', res => buffer += res);
         res.on('end', () => {
             const data = JSON.parse(buffer);
-            const index = Math.floor(Math.random() * 40);
+            const index = Math.floor(Math.random() * 20);
             const photo = data.photos[index];
 
             if (photo) 
-                message.channel.send(`Here's ${input} for you!`, {file: photo.src.original});
+                message.channel.send(`:man_gesturing_ok: ${input} for you!`, {file: photo.src.original});
             else
-                message.channel.send(`Couldn't find any images relating to your search ${input}`);
+                message.channel.send(':man_gesturing_no: No photos found relating to your search!');
         });
         res.on('error', console.log);
     });
