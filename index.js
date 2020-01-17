@@ -29,7 +29,7 @@ client.on('message', async message => {
             const photo = data.photos[index];
 
             if (photo) 
-                message.channel.send(`:man_gesturing_ok: ${input} for you!`, {file: photo.src.medium});
+                message.channel.send(`:man_gesturing_ok: ${input} for you!`, {file: photo.src.large});
             else
                 message.channel.send(':man_gesturing_no: No photos found relating to your search!');
         });
