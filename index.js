@@ -26,7 +26,7 @@ client.on('message', async message => {
         res.on('end', () => {
             const data = JSON.parse(buffer);
             if (data.photos) {
-                const index = Math.floor(Math.random() * data.photos.total_results);
+                const index = Math.floor(Math.random() * data.total_results);
                 const url = data.photos[index].src.original;
                 message.channel.send(`Here's ${input} for you!`, {file: url});
             } else {
