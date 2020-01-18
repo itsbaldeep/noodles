@@ -1,19 +1,22 @@
 const Discord = require('discord.js');
 const https = require('https');
-const prefix = "send ";
+const { prefix } = require('./config.json');
 
+// Making the client
 const client = new Discord.Client();
 
+// Handling ready event
 client.on('ready', () => {
-    client.user.setActivity("with eggplant", "PLAYING");
+    client.user.setActivity('with eggplant', 'PLAYING');
 });
 
-client.on('message', async message => {
-    if (message.author.bot) return;
-    if (message.content.toLowerCase().indexOf(prefix) !== 0) return;
+// Handling message event
+client.on('message', message => {
+    // Exit early
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     // Getting the arguments
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(prefix.length).split(/ +/);
     const input = args.join('%20').toLowerCase();
 
     // Options for API call
@@ -49,4 +52,5 @@ client.on('message', async message => {
     req.end();
 });
 
+// Starting the client;
 client.login(process.env.DISCORD_API);
