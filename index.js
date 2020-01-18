@@ -26,7 +26,7 @@ client.on('message', message => {
     // Getting command name
     let commandName;
     for (const c of commands) {
-        if (message.content.startsWith(c)) {
+        if (message.content.toLowerCase().startsWith(c)) {
             commandName = c;
             break;
         }

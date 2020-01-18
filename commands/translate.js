@@ -1,16 +1,15 @@
 module.exports = {
     name: 'translate',
     execute(message, args) {
-        const [sl, tl, query] = args;
-        if (!sl || !tl || !query) return;4
-        console.log(query);
-        console.log(query.split(' '));
-        console.log(query.split(' ').join('+'));
-        
+        const sl = args.shift();
+        const tl = args.shift();
+        const query = args.join('+');
+        if (!sl || !tl || !query) return;
+
         const https = require('https');
         const options = {
             host: 'translate.googleapis.com',
-            path: `/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${query.split(' ').join('+')}`
+            path: `/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${query}`
         };
 
         const req = https.request(options, res => {
