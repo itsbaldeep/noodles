@@ -2,7 +2,10 @@ module.exports = {
     name: 'translate',
     execute(message, args) {
         const [sl, tl, query] = args;
-        if (!sl || !tl || !query) return;
+        if (!sl || !tl || !query) return;4
+        console.log(query);
+        console.log(query.split(' '));
+        console.log(query.split(' ').join('+'));
         
         const https = require('https');
         const options = {
