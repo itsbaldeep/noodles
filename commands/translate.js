@@ -8,7 +8,7 @@ module.exports = {
         const https = require('https');
         const options = {
             host: 'translate.googleapis.com',
-            path: `/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURI(query)}`
+            path: `/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${query.join('+')}`
         };
 
         const req = https.request(options, res => {
