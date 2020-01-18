@@ -34,7 +34,7 @@ client.on('message', message => {
     if (!commandName) return;
 
     // Getting arguments
-    const args = message.content.splice(commandName.length).split(/ +/);
+    const args = message.content.slice(commandName.length).split(/ +/);
 
     // Getting command
     const command = client.commands.get(commandName);
