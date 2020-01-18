@@ -1,7 +1,6 @@
 module.exports = {
     name: 'translate',
     execute(message, args) {
-        console.log(args);
         const [sl, tl, query] = args;
         if (!sl || !tl || !query) return;
         
