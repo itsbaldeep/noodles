@@ -4,11 +4,10 @@ module.exports = {
         const [sl, tl, query] = args;
         if (!sl || !tl || !query) return;
         
-        
         const https = require('https');
         const options = {
             host: 'translate.googleapis.com',
-            path: `/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${query.join('+')}`
+            path: `/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${query.split(' ').join('+')}`
         };
 
         const req = https.request(options, res => {
