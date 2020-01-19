@@ -4,7 +4,6 @@ module.exports = {
         const sl = args.shift();
         const tl = args.shift();
         const query = encodeURI(args.join(' '));
-        console.log(query);
         if (!sl || !tl || !query) return;
 
         const https = require('https');
@@ -18,10 +17,8 @@ module.exports = {
             res.on('data', res => buffer += res);
             res.on('end', () => {
                 const data = JSON.parse(buffer);
-                console.log(data);
                 let text = '';
                 for (const d of data[0]) text += d[0];
-                // const text = data[0][0][0];
                 message.channel.send(text);
             });
             res.on('err', console.error);
