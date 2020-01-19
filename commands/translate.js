@@ -20,7 +20,7 @@ module.exports = {
                 const data = JSON.parse(buffer);
                 console.log(data);
                 let text;
-                for (const d of data[0][0]) text += d;
+                for (const d of data[0]) text += d[0];
                 // const text = data[0][0][0];
                 message.channel.send(text);
             });
