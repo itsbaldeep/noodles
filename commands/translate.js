@@ -18,6 +18,7 @@ module.exports = {
             res.on('data', res => buffer += res);
             res.on('end', () => {
                 const data = JSON.parse(buffer);
+                console.log(data);
                 const text = data[0][0][0];
                 message.channel.send(text);
             });
