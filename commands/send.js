@@ -15,9 +15,10 @@ module.exports = {
             res.on('data', res => buffer += res);
             res.on('end', () => {
                 const data = JSON.parse(buffer);
-                const length = Math.min(data.per_page, data.total_results);
+                // const length = Math.min(data.per_page, data.total_results);
+                const length = data.photos.length;
                 const index = Math.floor(Math.random() * length);
-                const photo = data.photos[index];
+                const photo = data.photos ? data.photos[index] : undefined;
 
                 if (photo) 
                     message.channel.send(`:man_gesturing_ok: ${args.join(' ')} for you! ${photo.src.original}`);
