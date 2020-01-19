@@ -16,8 +16,7 @@ module.exports = {
             res.on('end', () => {
                 const data = JSON.parse(buffer);
                 const length = Math.min(data.per_page, data.total_results);
-                let index = Math.floor(Math.random() * length);
-                if (index == length) index--;
+                const index = Math.floor(Math.random() * length);
                 const photo = data.photos[index];
 
                 if (photo) 
