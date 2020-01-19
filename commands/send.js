@@ -16,8 +16,9 @@ module.exports = {
             res.on('end', () => {
                 const data = JSON.parse(buffer);
                 const length = Math.min(data.per_page, data.total_results);
-                const index = Math.floor(Math.random() * length);
-                const photo = data.photos ? data.photos[index] : undefined;
+                let index = Math.floor(Math.random() * length);
+                if (index == length) index--;
+                const photo = data.photos[index];
 
                 if (photo) 
                     message.channel.send(`:man_gesturing_ok: ${args.join(' ')} for you! ${photo.src.original}`);
