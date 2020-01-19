@@ -3,7 +3,7 @@ module.exports = {
     execute(message, args) {
         const sl = args.shift();
         const tl = args.shift();
-        const query = args.join('+');
+        const query = encodeURI(args.join(' '));
         if (!sl || !tl || !query) return;
 
         const https = require('https');

@@ -2,7 +2,7 @@ module.exports = {
     name: 'send',
     execute(message, args) {
         const https = require('https');
-        const input = args.join('%20').toLowerCase();
+        const input = encodeURI(args.join(' '));
 
         const options = {
             host: 'api.pexels.com',
