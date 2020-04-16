@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'send',
+    name: '!send',
     execute(message, args) {
         const https = require('https');
         const input = encodeURI(args.join(' '));
