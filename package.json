@@ -1,8 +1,9 @@
 {
   "name": "noodles",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A discord bot",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/itsbaldeep/noodles#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0"
   }
 }
